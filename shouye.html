@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<link rel="stylesheet" href="shouye.css">
+	</head>
+	<body> 
+		<div class="head">
+			<div class="headleft"></div>
+			<div class="headc">你好，欢迎光临文轩网</div>
+			<div class="headr">
+			<ul>
+			<li>
+			<a href="login.html">【登录】</a>
+			<a href="register.html">【免费注册】</a>
+			</li>	
+			<li>我的订单</li>
+			<li>购书卡</li>
+			<li>新手入门</li>
+			<li>帮助中心</li>
+			<li>客户服务</li>
+			<li>手机文轩</li>
+			</ul>
+			</div>
+		</div>
+		<div class="serch">
+			<div class="serchl"><a href=""><img src="images/logo.png" alt=""></a></div>
+			<div class="serchc">
+				<input type="text">
+				<button><a href="search.html">搜索</a></button>
+			</div>
+			<div class="serchr">
+				<a href="">我的文轩</a>
+				<a href="car.html">购物车</a>
+			</div>
+		</div>
+		<div class="nav">
+			
+			<div class="navleft">
+				<ul>
+					
+				<li>全部商品分类</li>
+				<li>品类专业馆</li>
+				<li>少儿</li>
+				<li>文学小说</li>
+				<li>学习考试</li>
+				<li>经济管理</li>
+				<li>童书</li>
+				<li>生活</li>
+				
+				</ul>
+			</div>
+			
+			<ul>
+				<li><a href="">文学频道</a></li>
+				<li><a href="">社科频道</a></li>
+				<li><a href="">经管频道</a></li>
+				<li><a href="">少儿频道</a></li>
+				<li><a href="">生活频道</a></li>
+				<li><a href="">科技频道</a></li>
+				<li><a href="">音响</a></li>
+				<li><a href="">百货</a></li>
+				<li><a href="">电子书</a></li>
+				<li><a href="">国际频道</a></li>
+			</ul>
+		</div>
+		<div class="cont">
+		    <div class="imgbox">
+		        <a href=""><img src="images/2000-480.jpg" alt=""></a>
+		        <a href=""><img src="images/2000-480-1.jpg" alt=""></a>
+		        <a href=""><img src="images/2000-480-2.jpg" alt=""></a>
+		        <a href=""><img src="images/2000-480-3.jpg" alt=""></a>
+				<a href=""><img src="images/2000-480-4.jpg" alt=""></a>
+		    </div>
+			<div class="simg">
+				<a href="" ><img src="images/2000-480.jpg" alt=""></a>
+				<a href=""><img src="images/2000-480-1.jpg" alt=""></a>
+				<a href=""><img src="images/2000-480-2.jpg" alt=""></a>
+				<a href=""><img src="images/2000-480-3.jpg" alt=""></a>
+				<a href=""><img src="images/2000-480-4.jpg" alt=""></a>
+			</div>
+		    
+		</div>
+		
+		<div class="box wen">
+			<h3>文轩聚焦</h3>
+			<ul>
+				
+				
+			</ul>
+		</div>
+		
+		<div class="box wen2">
+			<h3>印象 精品推荐</h3>
+			<div class="wen2l">
+				<img src="http://static.winxuancdn.com/topic/subject/201601/dyts/208-350-0.jpg?202001031700" alt="">
+				<h4>热门分类</h4>
+				<span>影视音乐</span>
+				<span>英语学习</span>
+				<span>卡通漫画</span>
+			</div>
+			<div class="wen2c">
+				<img src="http://static.winxuancdn.com/topic/subject/201408/soujiao/yingxiangrukou.jpg?202001031700" alt="">
+			</div>
+			<div class="wen2r">
+				<ul>
+					
+				</ul>
+			</div>
+		</div>
+		<div class="box wen2">
+			<h3>百货精品推荐</h3>
+			<div class="wen2l">
+				<img src="http://static.winxuancdn.com/topic/subject/201711/mall/208-350.jpg?202001031700" alt="">
+				<h4>入驻商家</h4>
+				<span>影视音乐</span>
+				<span>英语学习</span>
+				<span>卡通漫画</span>
+			</div>
+			<div class="wen2c">
+				<img src="http://static.winxuancdn.com/topic/subject/201408/soujiao/baihuorukou.jpg?202001031700" alt="">
+			</div>
+			<div class="wen3r">
+				<ul> 
+					
+				</ul>
+			</div>
+		</div>
+		<ul class="list">
+		    <li>文轩聚焦</li>
+		    <li>印象</li>
+		    <li>百货精品</li>
+		</ul>
+		<div class="bottom">
+			<img src="images/bot.png" alt="">
+		</div>
+	</body>
+	<script src="js/move.js"></script>
+	<script src="js/banner.js"></script>
+	<script src="../jquery.js"></script>
+	<script>
+		$(".list").children("li").click(function(){
+			$("html").stop().animate({
+			        scrollTop:$(".box").eq($(this).index()).offset().top
+			    })
+			})
+			
+		
+	    class Shou{
+	        // 选择元素，设置初始值
+	        constructor(){
+	          this.wen=document.querySelector(".wen ul")
+			  this.wen2=document.querySelector(".wen2r ul")
+			  this.wen3=document.querySelector(".wen3r ul")
+	
+	            this.url = "http://localhost/json/shouye.json";
+	
+	            this.load();
+	        }
+	        load(){
+	            var that = this;
+	            ajaxGet(this.url,function(res){
+	                that.res = JSON.parse(res);
+	                that.display();
+	            });
+	        }
+	        display(){
+	            var str = "";
+	           for(var i=0;i<this.res.length;i++){
+	                if(i<this.res.length){
+	                    str += `
+					<li> 
+					        <img src="${this.res[i].image}" alt="" >
+					        <h2>${this.res[i].dis}</h2>
+					       <span>${this.res[i].price}</span>
+						   <p>${this.res[i].info}</p>
+					    </li>`
+	                } 
+				
+	            this.wen.innerHTML = str;
+				this.wen2.innerHTML = str;
+				this.wen3.innerHTML = str;
+	           }
+		      }
+			}
+			new Shou()
+			
+			function ajaxGet(url,cb,data){
+			    data = data || {};
+			    var str = "";
+			    for(var i in data){
+			        str += `${i}=${data[i]}&`;
+			    }
+			    var d = new Date();
+			    url = url + "?" + str + "__lyt__="+d.getTime();
+			    var xhr = new XMLHttpRequest();
+			    xhr.open("get",url,true);
+			    xhr.onreadystatechange = function(){
+			        if(xhr.readyState === 4 && xhr.status === 200){
+			            cb(xhr.responseText);
+			        }
+			    }
+			    xhr.send();
+			}
+			
+			
+		
+			
+	</script>
+	
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/product.css">
+	</head>
+	<body>
+		<div class="top"></div>
+		<h2>商品详情</h2>
+		<div class="cont">
+			
+		</div>
+		
+	</body>
+	<script src="js/ajax.js"></script>
+	
+	<script>
+		class Product{
+			constructor() {
+			    this.cont=document.querySelector(".cont");
+				this.url = "http://localhost/json/shouye2.json";
+				this.load();
+				this.addEvent( )
+			}
+			
+			load(){
+				var that=this;
+				ajaxGet(this.url,function(res){
+					that.res=JSON.parse(res)
+					
+					that.storage();
+				})
+			}
+			storage(){
+				this.pro=localStorage.getItem("pro")?JSON.parse(localStorage.getItem("pro")):[];
+					this.display();
+			}
+			display(){
+				var str="";
+				for(var i=0;i<this.res.length;i++){
+					if(this.pro==this.res[i].image){
+						str+=`<div class="contl">
+								<img src="${this.res[i].image}" alt="">
+								<span></span>
+								</div>
+								<div class="contc">
+									<img src="${this.res[i].image}" alt="">
+								</div>
+						<div class="contr">
+								<h3>${this.res[i].dis}</h3>
+								<span>购书卡&政企书目服务专线：028-83157118 （10:00-17:00）</span><br>
+								<h4>价格: ${this.res[i].price}</h4>
+								<p>作　　者 ：《十九大精神边学边记》编写组 编</p>
+								<p>所属分类 ：图书 > 政治 > 政治理论 > 国家理论</p>
+								<p>促销活动 ：❤老客户回馈，积分换礼券，购书更实惠</p>
+						</div> `
+					}
+				}
+			this.cont.innerHTML=str;
+			}
+			addEvent(){
+				var that = this;
+				console.log(this.cont)
+				this.cont.addEventListener("mouseover",function(eve){
+					if(eve.target.parentNode.className=="contl"){
+						that.e=eve.target.parentNode;//s
+						that.c=that.e.nextElementSibling;//b
+						that.w=that.e.nextElementSibling.lastElementChild;//i
+						that.t=that.e.lastElementChild;//s
+				    that.show();
+						
+					}
+					
+				})
+				this.cont.addEventListener("mouseout",function(eve){
+					if(eve.target.parentNode.className=="contl"){
+						that.e=eve.target.parentNode;//s
+						that.c=that.e.nextElementSibling;//b
+						that.w=that.e.nextElementSibling.lastElementChild;//i
+						that.t=that.e.lastElementChild;//s
+				    that.hide()
+						
+					}
+					
+				})
+				this.cont.addEventListener("mousemove",function(eve){
+if(eve.target.parentNode.className=="contl"){
+						that.e=eve.target.parentNode;//s
+						that.c=that.e.nextElementSibling;//b
+						that.w=that.e.nextElementSibling.lastElementChild;//i
+						that.t=that.e.lastElementChild;//s
+				    that.eve = eve || window.event;
+				    that.move(that.eve)
+						
+					}
+					
+				})
+				
+			}
+			show(){
+				this.t.style.display = "block";
+				this.c.style.display = "block";
+				this.t.style.width = this.e.offsetWidth / this.w.offsetWidth * this.c.offsetWidth + "px";
+			    this.t.style.height = this.e.offsetHeight / this.w.offsetHeight * this.c.offsetHeight + "px";
+				
+			}
+			hide(){
+				this.t.style.display = "none";
+				this.c.style.display = "none";
+			}
+			move(e){
+				var l = e.clientX - this.t.offsetWidth/2;
+				var t = e.clientY - this.c.offsetTop - this.t.offsetHeight/2;
+				
+				// span的边界限定
+				if(l<0) l=0;
+				if(t<0) t=0;
+				if(l > this.e.offsetWidth - this.t.offsetWidth){
+				    l = this.e.offsetWidth - this.t.offsetWidth
+				}
+				if(t > this.e.offsetHeight - this.t.offsetHeight){
+				    t = this.e.offsetHeight - this.t.offsetHeight
+				}
+				
+				// 设置span的位置
+				this.t.style.left = l + "px";
+				this.t.style.top = t + "px";
+				
+				// 计算span移动距离的比例
+				var x = l / (this.e.offsetWidth - this.t.offsetWidth);
+				var y = t / (this.e.offsetHeight - this.t.offsetHeight);
+				
+				// 根据span移动的比例计算大图移动的距离
+				this.w.style.left = x * (this.e.offsetWidth - this.w.offsetWidth) + "px";
+				this.w.style.top = y * (this.e.offsetHeight - this.w.offsetHeight) + "px";
+			}
+		}
+		new Product();
+	</script>
+</html>

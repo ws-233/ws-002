@@ -1,0 +1,27 @@
+	
+*{
+	margin:0;
+	padding:0;
+}
+
+.top{
+	width:100%;
+	img{
+		width:100%;
+	}
+}  
+.box{
+	width:70%;
+	margin: 0 auto;
+	background:#4d5352;
+	p{
+		color:#ccc;
+		font-size: 10px;
+		margin: 20px 2%;
+	}
+	input{
+		margin-top: 20px;
+		width:40%;
+		height:40px;
+	}
+}

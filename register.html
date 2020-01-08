@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>这是注册页面，去<a href="login.html">登录</a></h2>
+    <div class="box">
+        用户名：<input type="text" id="user"><br>
+        密码：<input type="text" id="pass"><br>
+        <input type="button" id="btn" value="注册"">
+        <span></span>
+    </div>
+</body>
+<script>
+    class Register{
+        constructor(){
+            this.user = document.getElementById("user");
+            this.pass = document.getElementById("pass");
+            this.btn = document.getElementById("btn");
+            this.span = document.querySelector("span");
+
+            this.addEvent();
+        }
+        addEvent(){
+            var that = this;
+            this.btn.onclick = function(){
+                that.u = that.user.value;
+                that.p = that.pass.value;
+                that.setData()
+            }
+        }
+        setData(){
+            // localStorage:[{user:"admin",pass:123,onoff:0},{},......]
+            this.msg = localStorage.getItem("userMsg") ? JSON.parse(localStorage.getItem("userMsg")) : [];
+
+            var b = this.msg.some((val)=>{
+                return val.user === this.u;
+            })
+            if(b){
+                this.span.innerHTML = "你这个用户名太火了，换一个吧";
+            }else{
+
+                this.msg.push({
+                    user:this.u,
+                    pass:this.p,
+                    onoff:0
+                })
+                localStorage.setItem("userMsg",JSON.stringify(this.msg))
+
+                this.span.innerHTML = "恭喜注册功能，3秒后跳转到<a href='login.html'>登录</a>";
+                setTimeout(() => {
+                    location.href = "login.html";
+                }, 3000);
+            }
+        }
+    }
+
+    new Register();
+
+</script>
+</html>
